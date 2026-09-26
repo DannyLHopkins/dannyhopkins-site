@@ -3,109 +3,505 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Danny Hopkins</title>
-  <meta name="description" content="Personal website of Danny Hopkins." />
+  <meta
+    name="description"
+    content="Personal website of Danny Hopkins — technical operations, field services, troubleshooting, and hands-on problem solving."
+  />
+
   <style>
+    :root {
+      --bg: #0b0f14;
+      --bg-soft: #111821;
+      --card: #121a24;
+      --card-hover: #16202c;
+      --text: #f4f7fb;
+      --muted: #9ba7b4;
+      --border: #243142;
+      --accent: #63a7ff;
+      --accent-soft: rgba(99, 167, 255, 0.12);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f1115;
-      color: #f4f4f4;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(99, 167, 255, 0.08), transparent 32%),
+        linear-gradient(180deg, #0b0f14 0%, #0c1118 100%);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    .wrap {
-      max-width: 900px;
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
       margin: 0 auto;
-      padding: 80px 24px;
+    }
+
+    header {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 15, 20, 0.85);
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 110px 0 90px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      margin: 0 0 24px;
+      max-width: 900px;
     }
 
-    .tagline {
-      font-size: 1.2rem;
-      color: #b8bcc6;
-      margin-bottom: 30px;
+    .hero-subtitle {
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 34px;
     }
 
-    .buttons {
+    .hero-actions {
       display: flex;
+      gap: 14px;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 50px;
     }
 
     .button {
-      display: inline-block;
-      padding: 12px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
       border-radius: 10px;
-      background: #ffffff;
-      color: #111;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      color: #07111d;
+      border-color: var(--accent);
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.025);
+      color: var(--text);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: #3c4f66;
+    }
+
+    .button.primary:hover {
+      border-color: var(--accent);
+      background: #78b4ff;
     }
 
     section {
-      margin-top: 40px;
+      padding: 78px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .section-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     h2 {
-      margin-bottom: 8px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 16px;
+      letter-spacing: -0.035em;
     }
 
-    p {
-      color: #c9cbd1;
+    .section-intro {
+      max-width: 700px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.025),
+        rgba(255, 255, 255, 0.015)
+      );
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .card:hover {
+      background: var(--card-hover);
+      transform: translateY(-3px);
+      border-color: #33455c;
+    }
+
+    .card-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .experience-type {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .experience-item h3 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+    }
+
+    .experience-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .contact-box p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: #6f7b88;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 850px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        position: static;
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        padding: 80px 0 64px;
+      }
+
+      section {
+        padding: 58px 0;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="wrap">
-    <h1>Danny Hopkins</h1>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">Danny Hopkins</a>
 
-    <div class="tagline">
-      Technical • Operations • Field Services
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <p>
-      Hands-on professional with experience in telecommunications,
-      emergency medical services, management, customer service, and
-      technical troubleshooting.
-    </p>
+  <main>
+    <section class="hero" id="about">
+      <div class="container">
+        <div class="eyebrow">Technical Operations • Field Services</div>
 
-    <div class="buttons">
-      <a class="button" href="mailto:danny@dannyhopkins.com">Email Me</a>
-      <a class="button" href="#" target="_blank">LinkedIn</a>
-      <a class="button" href="#">Résumé</a>
-    </div>
+        <h1>Hands-on problem solving, in the field and beyond.</h1>
 
-    <section>
-      <h2>Experience</h2>
-      <p>
-        Background in field operations, telecommunications, EMS,
-        management, sales, and customer-facing technical work.
-      </p>
+        <p class="hero-subtitle">
+          I'm Danny Hopkins — a technical and operations-focused professional
+          with experience across telecommunications, emergency medical services,
+          management, customer-facing work, and practical troubleshooting.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="mailto:danny@dannyhopkins.com">
+            Email Me
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://www.linkedin.com/in/DLHopkins"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+
+          <a class="button secondary" href="#">
+            Résumé
+          </a>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Projects</h2>
-      <p>
-        3D printing, PC hardware, woodworking, fabrication,
-        photography, and technical problem solving.
-      </p>
+    <section id="experience">
+      <div class="container">
+        <div class="section-label">Experience</div>
+        <h2>Broad experience. Practical perspective.</h2>
+
+        <p class="section-intro">
+          My background spans technical field work, high-pressure operations,
+          leadership, customer service, and hands-on troubleshooting.
+        </p>
+
+        <div class="experience-list">
+          <div class="experience-item">
+            <div class="experience-type">Telecommunications</div>
+
+            <div>
+              <h3>Field technical work</h3>
+              <p>
+                Experience working in residential and field environments,
+                troubleshooting systems, resolving service issues, and working
+                directly with customers.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-type">Emergency Services</div>
+
+            <div>
+              <h3>EMS field operations</h3>
+              <p>
+                Experience operating in time-sensitive environments where clear
+                communication, situational awareness, documentation, and sound
+                decision-making matter.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-item">
+            <div class="experience-type">Operations & Leadership</div>
+
+            <div>
+              <h3>Management and customer-facing operations</h3>
+              <p>
+                Years of experience coordinating people, solving operational
+                problems, working with customers, and keeping day-to-day systems
+                moving.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Contact</h2>
-      <p>
-        <a href="mailto:danny@dannyhopkins.com" style="color:white;">
-          danny@dannyhopkins.com
-        </a>
-      </p>
+    <section id="projects">
+      <div class="container">
+        <div class="section-label">Projects</div>
+        <h2>I like building things that solve real problems.</h2>
+
+        <p class="section-intro">
+          Outside of work, I spend a lot of time experimenting, building,
+          troubleshooting, and learning by doing.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="card-number">01</div>
+            <h3>3D Printing & Prototyping</h3>
+            <p>
+              Functional prints, custom parts, prototyping, iteration, and
+              practical design work.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">02</div>
+            <h3>PC Hardware & Technical Builds</h3>
+            <p>
+              PC hardware, troubleshooting, custom setups, upgrades, and
+              hands-on technical problem solving.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-number">03</div>
+            <h3>Fabrication & DIY</h3>
+            <p>
+              Woodworking, mounting solutions, custom household projects, and
+              solving physical design problems with practical builds.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-label">Contact</div>
+
+        <div class="contact-box">
+          <div>
+            <h2>Let’s connect.</h2>
+            <p>
+              For professional inquiries, opportunities, or project-related
+              conversations.
+            </p>
+          </div>
+
+          <a class="button primary" href="mailto:danny@dannyhopkins.com">
+            danny@dannyhopkins.com
+          </a>
+        </div>
+      </div>
     </section>
   </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Danny Hopkins
+    </div>
+  </footer>
 </body>
 </html>
