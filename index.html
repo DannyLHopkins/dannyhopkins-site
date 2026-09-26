@@ -270,6 +270,68 @@
         padding: 56px 0;
       }
     }
+
+    .featured-projects {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.project {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.project-featured {
+  background:
+    linear-gradient(135deg, rgba(99, 167, 255, 0.10), rgba(255,255,255,0.02));
+}
+
+.project-meta {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.project h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.project-tags span {
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  color: var(--muted);
+  background: rgba(255,255,255,0.025);
+}
+
+.project::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(99,167,255,0.045);
+  right: -45px;
+  bottom: -45px;
+}
+
+@media (max-width: 800px) {
+  .featured-projects {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
@@ -372,47 +434,82 @@
       </div>
     </section>
 
-    <section id="projects">
-      <div class="container">
-        <div class="section-label">Projects</div>
+   <section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
 
-        <h2>Things I work on</h2>
+    <h2>Selected projects</h2>
 
-        <p class="section-intro">
-          A few of the technical and hands-on projects I spend time on outside of work.
+    <p class="section-intro">
+      A few hands-on projects involving design, troubleshooting, fabrication,
+      and technical problem solving.
+    </p>
+
+    <div class="project-grid featured-projects">
+
+      <article class="project project-featured">
+        <div class="project-meta">3D Printing</div>
+        <h3>Custom parts & functional prototypes</h3>
+        <p>
+          One-off prints, replacement parts, small prototypes, and practical
+          designs built around a specific problem or use case.
         </p>
 
-        <div class="project-grid">
-          <div class="project">
-            <h3>3D Printing</h3>
-            <p>
-              Functional parts, small prototypes, custom designs, and repair-related prints.
-            </p>
-          </div>
-
-          <div class="project">
-            <h3>PC Hardware</h3>
-            <p>
-              Builds, upgrades, troubleshooting, hardware changes, and custom setups.
-            </p>
-          </div>
-
-          <div class="project">
-            <h3>DIY & Fabrication</h3>
-            <p>
-              Woodworking, mounting solutions, repairs, and small custom builds.
-            </p>
-          </div>
-
-          <div class="project">
-            <h3>Photography</h3>
-            <p>
-              General photography and occasional astrophotography projects.
-            </p>
-          </div>
+        <div class="project-tags">
+          <span>CAD</span>
+          <span>Prototyping</span>
+          <span>Iteration</span>
         </div>
-      </div>
-    </section>
+      </article>
+
+      <article class="project">
+        <div class="project-meta">Fabrication</div>
+        <h3>Custom PC mounting solution</h3>
+        <p>
+          Designed and built a wooden support system to securely mount a desktop
+          PC while working around limited desk space and existing hardware.
+        </p>
+
+        <div class="project-tags">
+          <span>Woodworking</span>
+          <span>Load support</span>
+          <span>DIY</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-meta">PC Hardware</div>
+        <h3>Hardware builds & troubleshooting</h3>
+        <p>
+          PC upgrades, cooling changes, hardware diagnostics, cable management,
+          and troubleshooting software and hardware issues.
+        </p>
+
+        <div class="project-tags">
+          <span>PC Hardware</span>
+          <span>Diagnostics</span>
+          <span>Upgrades</span>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-meta">Photography</div>
+        <h3>Photography & astrophotography</h3>
+        <p>
+          General photography and occasional telescope-based projects involving
+          camera setup, focusing, alignment, and image capture.
+        </p>
+
+        <div class="project-tags">
+          <span>Photography</span>
+          <span>Optics</span>
+          <span>Astro</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
     <section id="contact">
       <div class="container">
